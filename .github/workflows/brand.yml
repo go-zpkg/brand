@@ -1,0 +1,36 @@
+# The gate this repository did not have.
+#
+# A brand repository is checked by whether its files are THERE and in the
+# family — not by whether a build succeeded, because there is no build. Until
+# now nothing checked either, which is how the organization could be renamed,
+# every repository follow the transfer, and the assets keep the old name for
+# weeks without a single red mark anywhere.
+#
+# brandcheck reads the README's own promises and compares them to what is on
+# disk, so a README that documents a file it does not ship fails here rather
+# than as somebody's broken image.
+name: brand
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  brandcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-go@v6
+        with:
+          go-version: stable
+      # The organization is named explicitly: in CI the checkout is the
+      # repository alone, so the directory is "brand" and the default — the
+      # directory's name — would ask about an organization called "brand".
+      - name: brandcheck
+        run: |
+          go install github.com/go-fleettools/fleettools/cmd/brandcheck@v0.94.0
+          "$(go env GOPATH)/bin/brandcheck" --org go-zpkg .
