@@ -1,0 +1,9 @@
+<!-- An isometric box, drawn open: the three edges meeting at the centre are a
+     package you can see the inside of, which is what a sovereign pantry is. -->
+<svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="go-zpkg">
+  <g fill="none" stroke="#000000" stroke-width="15" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M128 58 L198 96 L198 160 L128 198 L58 160 L58 96 Z"/>
+    <path d="M58 96 L128 132 L198 96"/>
+    <path d="M128 132 L128 198"/>
+  </g>
+</svg>
